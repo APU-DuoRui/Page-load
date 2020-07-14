@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .box,
+        .box img {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .btn1,
+        .btn1 img {
+            width: 100%;
+            margin: -5px auto;
+        }
+
+        .btn2,
+        .btn2 img {
+            width: 815px;
+            margin: 3px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <img src="./images/top.png" alt="">
+    </div>
+    <div class="btn1">
+        <img src="./images/nav.png" alt="">
+    </div>
+    <div class="btn2">
+        <img src="./images/main.png" alt="">
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.12.2/jquery.js"></script>
+    <script>
+        //声明一个入口函数
+        $(function () {
+            //1.需求分析  当页面滚动btn1 给btn添加固定定位 
+            $(window).on('scroll', function () {
+                //2.判断scrollTop的值
+                if ($(this).scrollTop() > $('.box').height()) {
+                    //3.修改btn1为固定定位
+                    $('.btn1').css({
+                        position: "fixed",
+                        top: 10
+                    });
+                    //4.设置btn2的marginTop ，避免脱标导致顿闪
+                    $('.btn2').css({
+                        marginTop: $('.btn1').height() + 10 + 'px'
+                    })
+                } else {
+                    //1.如果用户返回顶部则修改btn1修改为静态定位
+                    $('.btn1').css({
+                        position: "static",
+                    });
+                    //2.设置btn2的marginTop为默认值
+                    $('.btn2').css({
+                        marginTop: "2px"
+                    })
+                }
+            })
+        });
+    </script>
+</body>
+
+</html>
